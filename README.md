@@ -16,3 +16,20 @@ I  used this command to turn of the old environments I used in my last attempt:
 Next I cloned my git hub repository. One thing that I learned in the process is how to ignore the dataset and the mack files using these commands
 
 <img width="474" height="149" alt="Screenshot 2026-10-04 at 6 42 10 PM" src="https://github.com/user-attachments/assets/76da1963-b4d5-4633-90cb-f4dd436292e6" />
+
+Then I installed the packages that I need for the project:
+<img width="472" height="117" alt="Screenshot 2026-10-04 at 6 24 28 PM" src="https://github.com/user-attachments/assets/95a4ef32-7bfa-4353-a858-43301b74ec85" />
+
+# Downloading the Dataset
+
+I used this website to gather the csv data: https://www.kaggle.com/datasets/subhajournal/phishingemails?resource=download. Then I placed the data into its own folder. 
+
+# Script Creation
+
+The first thing that I did was import all the files that I would use during the project. Then I loaded the dat in to check and to make sure everything was loading correctly. 
+
+<img width="510" height="70" alt="Screenshot 2026-10-04 at 6 56 12 PM" src="https://github.com/user-attachments/assets/24ca536c-9d30-43dc-89ac-5e78ba53e9cc" />
+
+
+
+
