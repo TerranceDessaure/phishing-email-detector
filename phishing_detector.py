@@ -31,3 +31,30 @@ df = df.drop_duplicates(subset="text")                   # remove duplicate emai
 print(f"Emails after cleaning: {len(df):,}")
 print(df["label"].value_counts().rename({0: "Safe", 1: "Phishing"}))
 print("\nExample cleaned email:\n", df["text"].iloc[0][:300])
+
+# Split into training and test sets
+
+X_train, X_test, y_train, y_test = train_test_split(
+    df["text"], df["label"],
+    test_size=0.2,          # 20% held back for testing
+    random_state=42,        # makes the split the same every run
+    stratify=df["label"],   # keeps the 62/38 ratio in both sets
+)
+
+# Build and train the model
+model = Pipeline([
+    ("tfidf", TfidfVectorizer(stop_words="english", ngram_range=(1, 2),
+                              min_df=2, max_features=50000)),
+    ("clf", LogisticRegression(max_iter=1000, class_weight="balanced")),
+])
+model.fit(X_train, y_train)
+
+# Evaluate on the test set
+predictions = model.predict(X_test)
+print("\n", classification_report(y_test, predictions, target_names=["Safe", "Phishing"]))
+
+ConfusionMatrixDisplay.from_predictions(
+    y_test, predictions, display_labels=["Safe", "Phishing"], cmap="Blues")
+plt.title("Phishing Detector: Confusion Matrix")
+plt.savefig("confusion_matrix.png", dpi=150, bbox_inches="tight")
+print("Saved confusion_matrix.png")
