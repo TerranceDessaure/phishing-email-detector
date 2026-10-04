@@ -12,3 +12,7 @@ Once I made sure the files were completely cleared, I created a New repository o
 
 I  used this command to turn of the old environments I used in my last attempt:
 <img width="472" height="117" alt="Screenshot 2026-10-04 at 6 24 28 PM" src="https://github.com/user-attachments/assets/33e30390-1caf-4d62-a2e0-3b227d207a14" />
+
+Next I cloned my git hub repository. One thing that I learned in the process is how to ignore the dataset and the mack files using these commands
+
+<img width="474" height="149" alt="Screenshot 2026-10-04 at 6 42 10 PM" src="https://github.com/user-attachments/assets/76da1963-b4d5-4633-90cb-f4dd436292e6" />
