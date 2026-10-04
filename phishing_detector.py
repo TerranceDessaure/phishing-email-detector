@@ -58,3 +58,20 @@ ConfusionMatrixDisplay.from_predictions(
 plt.title("Phishing Detector: Confusion Matrix")
 plt.savefig("confusion_matrix.png", dpi=150, bbox_inches="tight")
 print("Saved confusion_matrix.png")
+
+# Security analysis: top phishing indicators ----------
+words = model.named_steps["tfidf"].get_feature_names_out()
+weights = model.named_steps["clf"].coef_[0]
+ranked = pd.Series(weights, index=words).sort_values()
+
+print("\nTop 15 phishing indicators:")
+print(ranked.tail(15)[::-1].round(2).to_string())
+print("\nTop 15 safe indicators:")
+print(ranked.head(15).round(2).to_string())
+
+plt.figure(figsize=(8, 6))
+ranked.tail(15).plot(kind="barh", color="#c0392b")
+plt.title("Top 15 Words and Phrases Linked to Phishing")
+plt.xlabel("Model weight (higher = more suspicious)")
+plt.savefig("top_phishing_words.png", dpi=150, bbox_inches="tight")
+print("\nSaved top_phishing_words.png")
