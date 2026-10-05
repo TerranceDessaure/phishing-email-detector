@@ -59,7 +59,36 @@ Some common uses for regex are:
 - Data validation: Check if user input is valid email address, phone number, or postal code.
 - Searching: Finding specific words, numbers, or patterns inside large blocks of text.
 - Text manipulation: Quickly finding and replace specific text formats in documents  or code
-- 
+
+## Basic Elements
+- Literal character: The exact letters or numbers you want to find, such as `cat`
+Metacharacters: Special symbols that represent rules or sets of character:
+- `.` matches any single character.
+- `\d` matches any digit from 0 to 9.
+- `^` matches the start of a text string.
+- `$` matches the end of a text string.
+
+Quantifiers: Symbols that control how many times a character can repeat:
+- `*` means zero or more times.
+- `+` means one or more times.
+- `?` means zero or one time.
+
+`text = str(text).lower()` - converts the input to string first, so it won't crash on numbers, `None`, or missing values (common in pandas columns). Then it lowercase everything so "Free", "FREE", and "free"  are treated as the same word.
+
+Email replacement: `\S+@\S+` means  "one or more non-space character, an @, then one or more non=space characters." Any email address becomes the word `emailtoken`. The idea is that a model usually doesn't care which email appears, only that one does.
+
+URL replacement: `https?://\S+` matches anything starting with `http://` or `https://`  (the `s?` makes the "s" optional) up to the nest space. The `|` means "or", so `www\.\S+` also catches lines without a protocol (the \. is a literal dot). Every link becomes `urltoken`.
+
+Number replacement: `\d+`  matches one or more digits in a row, so '42', '2026', and '5' each become `numtoken`. This stops a model form treating every distinct number as its own vocabulary word.
+
+Punctuation removal: `[^a-z\s]` means "any character that is not a lowercase letter or whitespace. "The `^`  inside brackets negates the set. Those characters  (punctuation, symbols, emoji) are replaced with a space rather than deleted, so "hello,world" becomes "hello world" instead of "hellworld". 
+
+Final cleanup: `\s+` matches runs of whitespace (spaces, tabs, newlines_ and collapses each run into a single space. `.strip()`  removes any leftover space at the start and end. This tidies up the gaps created by all the earlier replacements.
+
+Why the order matters: emails and URLs are handled before punctuation removal because they rely on `@`, `:`, `/`. and `.` to be recognized. If punctuation were stripped first, those patterns  would never match. Numbers are replaced before punctuation removal too, though that order matters less.
+
+Input like: `"Call 555-1234 or visit www.deals.comm!!"` comes out as `"call numtoken or visit urltoken"`
+ 
 
 
 
