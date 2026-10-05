@@ -30,6 +30,21 @@ The first thing that I did was import all the files that I would use during the 
 
 <img width="510" height="70" alt="Screenshot 2026-10-04 at 6 56 12 PM" src="https://github.com/user-attachments/assets/24ca536c-9d30-43dc-89ac-5e78ba53e9cc" />
 
+The data that loaded was 18,650 emails, and the emails were named either "Safe Email" or "Phishing Email". Some of the other columns were named:
+- Unnamed: 0: a leftover  row-number from when the CSV was saved. It's useless, so we'll drop it.
+- Email Text: the email content. Pandas hid it with `...` because it is long.
+- Email Type: the label, "Safe Email" pr "Phishing Email"
+
+# Cleaning the data
+
+<img width="437" height="59" alt="Screenshot 2026-10-04 at 8 07 38 PM" src="https://github.com/user-attachments/assets/de47a307-8a5f-4e17-b06c-0a2e722b9878" />
+
+First we start with `df = df.dropna()`. This will remove the rows from the data frame with missing values. Next `df["label"] = (df["label"] == "Phishing Email").astype(int)`. This is evaluates every row in the `label` column. If the text matches "Phishing Email" then it with evaluate to `True`, anything else will (like `"Safe Email"` or `"Ham"`), and it evaluates to `False`. This produces a series pf boolean values.
+
+`.astype(int)`: this casts the boolean `True` and `False` value into integers.
+- `True` becomes `1`
+- `False` becomes `0`
+- `df["label"] = ...`: This overwrites the original `label` column with the 1s and 0s
 
 
 
