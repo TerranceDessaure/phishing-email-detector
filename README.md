@@ -46,5 +46,21 @@ First we start with `df = df.dropna()`. This will remove the rows from the data 
 - `False` becomes `0`
 - `df["label"] = ...`: This overwrites the original `label` column with the 1s and 0s
 
+<img width="674" height="137" alt="Screenshot 2026-10-04 at 9 22 15 PM" src="https://github.com/user-attachments/assets/4f9a05ca-393b-470a-876b-7818601005e2" />
+
+This function normalizes raw text so it's consistent and easier to analyze. 
+
+## Regex
+---
+`import re` is the important module that involves regular expressions. A regular expression (shortened as `regex`) is a special sequence of characters that forms a search pattern used to find, check, or change text.
+
+
+Some common uses for regex are:
+- Data validation: Check if user input is valid email address, phone number, or postal code.
+- Searching: Finding specific words, numbers, or patterns inside large blocks of text.
+- Text manipulation: Quickly finding and replace specific text formats in documents  or code
+- 
+
+
 
 
