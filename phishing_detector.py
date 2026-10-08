@@ -59,7 +59,7 @@ plt.title("Phishing Detector: Confusion Matrix")
 plt.savefig("confusion_matrix.png", dpi=150, bbox_inches="tight")
 print("Saved confusion_matrix.png")
 
-# Security analysis: top phishing indicators ----------
+# Security analysis: top phishing indicators 
 words = model.named_steps["tfidf"].get_feature_names_out()
 weights = model.named_steps["clf"].coef_[0]
 ranked = pd.Series(weights, index=words).sort_values()
